@@ -111,7 +111,22 @@ ___BYTEARR___;
      . "\n}";
 }
 
+function generate_ascii_function($byteX, $seq_num, $token)
+{
+	$byteX_match_function = <<< ___BYTEARR___
 
+void match_$token$seq_num(unsigned char const* str, int start, char const* &out, bool &step_size)
+{
+  step_size = false;
+
+___BYTEARR___;
+    global $LogLine;
+    $bm = new ByteMap($LogLine);
+    $bh = new STCompiler();
+    return $byteX_match_function
+     . $bm->cascade($byteX)->compile(1, $bh)
+     . "\n}";
+}
 
 function get_function_group($file, $token)
 {
@@ -171,7 +186,8 @@ function get_function_group($file, $token)
 	echo "  byte2, Analyzing levels ...\n";
 	$wconv_table .= generate_match_function($byte2, "byte2", $token);
 	echo "  ascii, Analyzing levels ...";
-	$wconv_table .= generate_match_function($ascii, "ascii", $token);
+    $ascii_code = generate_ascii_function($ascii, "ascii", $token);
+    $wconv_table .= str_replace( "step_size = 0", "step_size = true", $ascii_code );
 	echo " done\n";
 
 	return $wconv_table;

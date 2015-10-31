@@ -103,8 +103,9 @@ String^ Symbolic::Convert(String^ Text)
 		}
 		else if (is_ascii(byte_arr, i))
 		{
-			match_w_ascii(byte_arr, i, out_phrase, step_size);
-			if (0 < step_size)
+			bool stepped = false;
+			match_w_ascii(byte_arr, i, out_phrase, stepped);
+			if (stepped)
 			{
 				conv_stream << out_phrase;
 			}

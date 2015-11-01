@@ -103,6 +103,9 @@ String^ Symbolic::Convert(String^ Text)
 		}
 		else if (is_ascii(byte_arr, i))
 		{
+			// Step size is always zero
+			step_size = 0;
+
 			bool stepped = false;
 			match_w_ascii(byte_arr, i, out_phrase, stepped);
 			if (stepped)
@@ -112,7 +115,6 @@ String^ Symbolic::Convert(String^ Text)
 			else
 			{
 				// if word does not match, pad this word
-				step_size = 0;
 				conv_stream << byte_arr[i];
 			}
 		}

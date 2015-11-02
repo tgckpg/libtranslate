@@ -20,7 +20,6 @@ String^ Symbolic::Convert(String^ Text)
 	stdext::cvt::wstring_convert<std::codecvt_utf8<wchar_t>> convert;
 	std::string stringUtf8 = convert.to_bytes(Text->Data());
 
-	char* byte_arr_c;
 	const char* out_phrase;
 	int step_size = 0;
 	int tLength = stringUtf8.length();

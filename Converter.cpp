@@ -35,7 +35,12 @@ void match_w_byte3(unsigned char const* str, int start, char const* &out, int &s
     }
     else if ( str[start + 1] == 188 )
     {
-      if( str[start + 2] == 137 )
+      if( str[start + 2] == 141 )
+      {
+        out = "︱";
+        step_size = 2;
+      }
+      else if ( str[start + 2] == 137 )
       {
         out = "︶";
         step_size = 2;
@@ -132,7 +137,7 @@ void match_w_byte3(unsigned char const* str, int start, char const* &out, int &s
     }
     else if ( str[start + 2] == 148 )
     {
-      out = "｜";
+      out = "︱";
       step_size = 2;
     }
     else if ( str[start + 2] == 147 )
@@ -153,7 +158,7 @@ void match_w_ascii(unsigned char const* str, int start, char const* &out, bool &
   step_size = false;
   if( str[start + 0] == 126 )
   {
-    out = "～";
+    out = "≀";
     step_size = true;
   }
   else if ( str[start + 0] == 125 )

@@ -22,7 +22,12 @@ void match_w_byte3(unsigned char const* str, int start, char const* &out, int &s
   {
     if( str[start + 1] == 189 )
     {
-      if( str[start + 2] == 157 )
+      if( str[start + 2] == 158 )
+      {
+        out = "≀";
+        step_size = 2;
+      }
+      else if ( str[start + 2] == 157 )
       {
         out = "︸";
         step_size = 2;
@@ -128,22 +133,30 @@ void match_w_byte3(unsigned char const* str, int start, char const* &out, int &s
       step_size = 2;
     }
   }
-  else if ( str[start + 0] == 226 && str[start + 1] == 128 )
+  else if ( str[start + 0] == 226 )
   {
-    if( str[start + 2] == 166 )
-    {
-      out = "⋮";
-      step_size = 2;
-    }
-    else if ( str[start + 2] == 148 )
+    if( str[start + 1] == 148 && str[start + 2] == 128 )
     {
       out = "︱";
       step_size = 2;
     }
-    else if ( str[start + 2] == 147 )
+    else if ( str[start + 1] == 128 )
     {
-      out = "︱";
-      step_size = 2;
+      if( str[start + 2] == 166 )
+      {
+        out = "⋮";
+        step_size = 2;
+      }
+      else if ( str[start + 2] == 148 )
+      {
+        out = "︱";
+        step_size = 2;
+      }
+      else if ( str[start + 2] == 147 )
+      {
+        out = "︱";
+        step_size = 2;
+      }
     }
   }
 

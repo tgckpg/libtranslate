@@ -16,12 +16,12 @@ export PATH=/opt/php/:$PATH
 
 echo "{CI_SECTION_START} mkcstables.php"
 cd codegen/vtrans/
-php mkcstables.php
+php mkcstable.php
 if [[ $? -ne 0 ]]; then
     STATUS=1
 fi
 cd ../s2trad/
-php mkcstables.php
+php mkcstable.php
 if [[ $? -ne 0 ]]; then
     STATUS=1
 fi

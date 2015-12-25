@@ -19,7 +19,7 @@ if [[ $? -ne 0 ]]; then
 fi
 echo "{CI_SECTION_END}"
 
-echo "{CI_SECTION_START} Make CS Tables"
+echo "{CI_SECTION_START} mkcstables.php"
 cd codegen/vtrans/
 php mkcstables.php
 if [[ $? -ne 0 ]]; then

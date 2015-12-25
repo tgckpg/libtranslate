@@ -34,7 +34,7 @@ cd ../../
 echo "{CI_SECTION_END}"
 
 echo "{CI_SECTION_START} MSBuild"
-"$BUILDER" VerticalTranslate.vcxproj /p:Configuration="Release"
+"$BUILDER" libtranslate.vcxproj /p:Configuration="Release"
 if [[ $? -ne 0 ]]; then
     STATUS=1
 fi

@@ -1,21 +1,14 @@
 ﻿#include "pch.h"
 #include "Symbolic.h"
 
-#include "IsUTF8.h"
-#include "Converter.h"
-
-#include <sstream>
-#include <cvt/wstring>
-#include <codecvt>
-
-using namespace VerticalTranslate;
+using namespace libtranslate;
 using namespace Platform;
 
 Symbolic::Symbolic()
 {
 }
 
-String^ Symbolic::Convert(String^ Text)
+String^ Symbolic::ToVertical(String^ Text)
 {
 	stdext::cvt::wstring_convert<std::codecvt_utf8<wchar_t>> convert;
 	std::string stringUtf8 = convert.to_bytes(Text->Data());

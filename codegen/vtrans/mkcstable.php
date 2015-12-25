@@ -26,7 +26,7 @@ $LogLine = function ($string)
 
 set_error_handler("myErrorHandler");
 
-require_once "ByteMap.php";
+require_once "../ByteMap.php";
 
 ///// C++  
 //  void match_p_byte{X}(unsigned char const* str, int start, char const* &out, int &step_size)
@@ -195,7 +195,7 @@ function get_function_group($file, $token)
 
 $wconv_t = "#include \"pch.h\"\n";
 $wconv_t .= get_function_group("table.txt", "w_");
-file_put_contents(__DIR__ . "/../Converter.cpp", $wconv_t);
+file_put_contents(__DIR__ . "/../../SymConv.cpp", $wconv_t);
 
 
 ?>

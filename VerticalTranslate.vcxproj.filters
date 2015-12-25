@@ -10,12 +10,16 @@
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="Symbolic.cpp" />
     <ClCompile Include="IsUTF8.cpp" />
-    <ClCompile Include="Converter.cpp" />
+    <ClCompile Include="Chinese.cpp" />
+    <ClCompile Include="SymConv.cpp" />
+    <ClCompile Include="CConv.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="Symbolic.h" />
-    <ClInclude Include="Converter.h" />
     <ClInclude Include="IsUTF8.h" />
+    <ClInclude Include="Chinese.h" />
+    <ClInclude Include="SymConv.h" />
+    <ClInclude Include="CConv.h" />
   </ItemGroup>
 </Project>

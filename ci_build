@@ -12,12 +12,7 @@ exit 1
 fi
 
 STATUS=0
-echo "{CI_SECTION_START} NuGet Restore"
-nuget restore
-if [[ $? -ne 0 ]]; then
-    STATUS=1
-fi
-echo "{CI_SECTION_END}"
+export PATH=/opt/php/:$PATH
 
 echo "{CI_SECTION_START} mkcstables.php"
 cd codegen/vtrans/

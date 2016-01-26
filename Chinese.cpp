@@ -4,10 +4,6 @@
 using namespace libtranslate;
 using namespace Platform;
 
-Chinese::Chinese()
-{
-}
-
 String^ Chinese::Traditional(String^ Text)
 {
 	stdext::cvt::wstring_convert<std::codecvt_utf8<wchar_t>> convert;

@@ -4,10 +4,6 @@
 using namespace libtranslate;
 using namespace Platform;
 
-Symbolic::Symbolic()
-{
-}
-
 String^ Symbolic::ToVertical(String^ Text)
 {
 	stdext::cvt::wstring_convert<std::codecvt_utf8<wchar_t>> convert;

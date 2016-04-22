@@ -146,7 +146,7 @@ function get_function_group($file, $token)
 
 	foreach($file as $value)
 	{
-		list($v1, $v2) = split(',', $value);
+		list($v1, $v2) = explode(',', $value);
 		if(ord($value[0]) >> 1 == 0x7e)
 		{
 			$byte6[$v1] = $v2;

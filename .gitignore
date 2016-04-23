@@ -2,5 +2,6 @@ Debug
 x64
 CConv.cpp
 SymConv.cpp
+SynPatchConv.cpp
 ARM
 Release

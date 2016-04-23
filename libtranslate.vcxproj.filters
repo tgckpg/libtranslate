@@ -20,6 +20,10 @@
     <ClCompile Include="SymConv.cpp">
       <Filter>Converters</Filter>
     </ClCompile>
+    <ClCompile Include="Conv.cpp" />
+    <ClCompile Include="SynPatchConv.cpp">
+      <Filter>Converters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -30,6 +34,10 @@
       <Filter>Converters</Filter>
     </ClInclude>
     <ClInclude Include="SymConv.h">
+      <Filter>Converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Conv.h" />
+    <ClInclude Include="SynPatchConv.h">
       <Filter>Converters</Filter>
     </ClInclude>
   </ItemGroup>

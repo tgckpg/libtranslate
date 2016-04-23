@@ -2,6 +2,7 @@
 
 #include "IsUTF8.h"
 #include "CConv.h"
+#include "Conv.h"
 
 #include <sstream>
 #include <cstring>

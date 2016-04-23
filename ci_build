@@ -20,6 +20,11 @@ php mkcstable.php
 if [[ $? -ne 0 ]]; then
     STATUS=1
 fi
+cd ../synpatch/
+php mkcstable.php
+if [[ $? -ne 0 ]]; then
+    STATUS=1
+fi
 cd ../s2trad/
 php mkcstable.php
 if [[ $? -ne 0 ]]; then

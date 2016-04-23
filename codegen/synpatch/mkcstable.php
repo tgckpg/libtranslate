@@ -197,8 +197,8 @@ function get_function_group($file, $token)
 }
 
 $wconv_t = "#include \"pch.h\"\n";
-$wconv_t .= get_function_group("table.txt", "w_");
-file_put_contents(__DIR__ . "/../../SymConv.cpp", $wconv_t);
+$wconv_t .= get_function_group("table.txt", "syn_");
+file_put_contents(__DIR__ . "/../../SynPatchConv.cpp", $wconv_t);
 
 
 ?>

@@ -2,6 +2,8 @@
 
 #include "IsUTF8.h"
 #include "SymConv.h"
+#include "SynPatchConv.h"
+#include "Conv.h"
 
 #include <sstream>
 #include <cvt/wstring>
@@ -13,5 +15,6 @@ namespace libtranslate
     {
     public:
 		static Platform::String^ ToVertical(Platform::String^ Text);
+		static Platform::String^ PatchSyntax(Platform::String^ Text);
     };
 }

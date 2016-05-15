@@ -9,7 +9,6 @@ String^ Symbolic::ToVertical(String^ Text)
 	stdext::cvt::wstring_convert<std::codecvt_utf8<wchar_t>> convert;
 	std::string stringUtf8 = convert.to_bytes(Text->Data());
 
-	const char* out_phrase;
 	int step_size = 0;
 	int tLength = stringUtf8.length();
 
@@ -32,7 +31,6 @@ String^ Symbolic::PatchSyntax(String^ Text)
 	stdext::cvt::wstring_convert<std::codecvt_utf8<wchar_t>> convert;
 	std::string stringUtf8 = convert.to_bytes(Text->Data());
 
-	const char* out_phrase;
 	int step_size = 0;
 	int tLength = stringUtf8.length();
 

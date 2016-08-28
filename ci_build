@@ -11,26 +11,31 @@ echo Cannot cd into build
 exit 1
 fi
 
+cd codegen/native/
+git submodule init
+git submodule update
+if [[ $? -ne 0 ]]; then
+    echo "Failed to check native submodule"
+    exit 1
+fi
+cd ../../
+
 STATUS=0
 export PATH=/opt/php/:$PATH
 
 echo "{CI_SECTION_START} mkcstables.php"
-cd codegen/vtrans/
-php mkcstable.php
+php codegen/s2trad.php
 if [[ $? -ne 0 ]]; then
     STATUS=1
 fi
-cd ../synpatch/
-php mkcstable.php
+php codegen/synpatch/mkcstable.php
 if [[ $? -ne 0 ]]; then
     STATUS=1
 fi
-cd ../s2trad/
-php mkcstable.php
+php codegen/vtrans/mkcstable.php
 if [[ $? -ne 0 ]]; then
     STATUS=1
 fi
-cd ../../
 echo "{CI_SECTION_END}"
 
 echo "{CI_SECTION_START} MSBuild"

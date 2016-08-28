@@ -2,7 +2,10 @@
 - PHP: For generating codes
 
 #### How to build
-1. cd into `codegen/vtrans/`, run `php mkcstable.php` for generating vertical text translation
-2. cd into `codegen/s2trad/`, run `php mkcstable.php` for generating Chinese translation
-3. Build it
-
+1. Run these commands.
+```Bash
+php codegen/s2trad.php
+php codegen/synpatch/mkcstable.php
+php codegen/vtrans/mkcstable.php
+```
+2. Build it

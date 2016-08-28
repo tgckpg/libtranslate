@@ -1,0 +1,3 @@
+[submodule "codegen/native"]
+	path = codegen/native
+	url = https://github.com/tgckpg/New-Tongwentang-Native.git

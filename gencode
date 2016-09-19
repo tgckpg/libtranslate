@@ -1,0 +1,13 @@
+#!/bin/bash
+php codegen/s2trad.php
+if [[ $? -ne 0 ]]; then
+    STATUS=1
+fi
+php codegen/synpatch/mkcstable.php
+if [[ $? -ne 0 ]]; then
+    STATUS=1
+fi
+php codegen/vtrans/mkcstable.php
+if [[ $? -ne 0 ]]; then
+    STATUS=1
+fi

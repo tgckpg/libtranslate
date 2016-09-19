@@ -15,7 +15,7 @@ cd codegen/native/
 git submodule init
 git submodule update
 if [[ $? -ne 0 ]]; then
-    echo "Failed to check native submodule"
+    echo "Failed to checkout native submodule"
     exit 1
 fi
 cd ../../
@@ -24,18 +24,7 @@ STATUS=0
 export PATH=/opt/php/:$PATH
 
 echo "{CI_SECTION_START} mkcstables.php"
-php codegen/s2trad.php
-if [[ $? -ne 0 ]]; then
-    STATUS=1
-fi
-php codegen/synpatch/mkcstable.php
-if [[ $? -ne 0 ]]; then
-    STATUS=1
-fi
-php codegen/vtrans/mkcstable.php
-if [[ $? -ne 0 ]]; then
-    STATUS=1
-fi
+. gencode
 echo "{CI_SECTION_END}"
 
 echo "{CI_SECTION_START} MSBuild"

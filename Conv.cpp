@@ -19,12 +19,12 @@ std::string ConvWithInst(
 
 	std::stringstream conv_stream;
 
-	for (int i = 0; i < tLength; i++)
+	for ( int i = 0; i < tLength; i++ )
 	{
-		if (is_utf8_byte6(byte_arr, i))
+		if ( is_utf8_byte6( byte_arr, i ) )
 		{
-			match_byte6(byte_arr, i, out_phrase, step_size);
-			if (0 < step_size)
+			match_byte6( byte_arr, i, out_phrase, step_size );
+			if ( 0 < step_size )
 			{
 				conv_stream << out_phrase;
 			}
@@ -32,13 +32,13 @@ std::string ConvWithInst(
 			{
 				// if word does not match, pad this word
 				step_size = 5;
-				conv_stream << byte_arr[i] << byte_arr[i + 1] << byte_arr[i + 2] << byte_arr[i + 3] << byte_arr[i + 4] << byte_arr[i + 5];
+				conv_stream << byte_arr[ i ] << byte_arr[ i + 1 ] << byte_arr[ i + 2 ] << byte_arr[ i + 3 ] << byte_arr[ i + 4 ] << byte_arr[ i + 5 ];
 			}
 		}
-		else if (is_utf8_byte5(byte_arr, i))
+		else if ( is_utf8_byte5( byte_arr, i ) )
 		{
-			match_byte5(byte_arr, i, out_phrase, step_size);
-			if (0 < step_size)
+			match_byte5( byte_arr, i, out_phrase, step_size );
+			if ( 0 < step_size )
 			{
 				conv_stream << out_phrase;
 			}
@@ -46,13 +46,13 @@ std::string ConvWithInst(
 			{
 				// if word does not match, pad this word
 				step_size = 4;
-				conv_stream << byte_arr[i] << byte_arr[i + 1] << byte_arr[i + 2] << byte_arr[i + 3] << byte_arr[i + 4];
+				conv_stream << byte_arr[ i ] << byte_arr[ i + 1 ] << byte_arr[ i + 2 ] << byte_arr[ i + 3 ] << byte_arr[ i + 4 ];
 			}
 		}
-		else if (is_utf8_byte4(byte_arr, i))
+		else if ( is_utf8_byte4( byte_arr, i ) )
 		{
-			match_byte4(byte_arr, i, out_phrase, step_size);
-			if (0 < step_size)
+			match_byte4( byte_arr, i, out_phrase, step_size );
+			if ( 0 < step_size )
 			{
 				conv_stream << out_phrase;
 			}
@@ -60,13 +60,13 @@ std::string ConvWithInst(
 			{
 				// if word does not match, pad this word
 				step_size = 3;
-				conv_stream << byte_arr[i] << byte_arr[i + 1] << byte_arr[i + 2] << byte_arr[i + 3];
+				conv_stream << byte_arr[ i ] << byte_arr[ i + 1 ] << byte_arr[ i + 2 ] << byte_arr[ i + 3 ];
 			}
 		}
-		else if (is_utf8_byte3(byte_arr, i))
+		else if ( is_utf8_byte3( byte_arr, i ) )
 		{
-			match_byte3(byte_arr, i, out_phrase, step_size);
-			if (0 < step_size)
+			match_byte3( byte_arr, i, out_phrase, step_size );
+			if ( 0 < step_size )
 			{
 				conv_stream << out_phrase;
 			}
@@ -74,13 +74,13 @@ std::string ConvWithInst(
 			{
 				// if word does not match, pad this word
 				step_size = 2;
-				conv_stream << byte_arr[i] << byte_arr[i + 1] << byte_arr[i + 2];
+				conv_stream << byte_arr[ i ] << byte_arr[ i + 1 ] << byte_arr[ i + 2 ];
 			}
 		}
-		else if (is_utf8_byte2(byte_arr, i))
+		else if ( is_utf8_byte2( byte_arr, i ) )
 		{
-			match_byte2(byte_arr, i, out_phrase, step_size);
-			if (0 < step_size)
+			match_byte2( byte_arr, i, out_phrase, step_size );
+			if ( 0 < step_size )
 			{
 				conv_stream << out_phrase;
 			}
@@ -88,20 +88,20 @@ std::string ConvWithInst(
 			{
 				// if word does not match, pad this word
 				step_size = 1;
-				conv_stream << byte_arr[i] << byte_arr[i + 1];
+				conv_stream << byte_arr[ i ] << byte_arr[ i + 1 ];
 			}
 		}
-		else if (is_ascii(byte_arr, i))
+		else if ( is_ascii( byte_arr, i ) )
 		{
-			match_ascii(byte_arr, i, out_phrase, step_size);
-			if (0 < step_size)
+			match_ascii( byte_arr, i, out_phrase, step_size );
+			if ( 0 < step_size )
 			{
 				conv_stream << out_phrase;
 			}
 			else
 			{
 				// if word does not match, pad this word
-				conv_stream << byte_arr[i];
+				conv_stream << byte_arr[ i ];
 			}
 
 			// Step size is always zero
@@ -111,7 +111,7 @@ std::string ConvWithInst(
 		{
 			// Not a valid character, pad it
 			step_size = 0;
-			conv_stream << byte_arr[i];
+			conv_stream << byte_arr[ i ];
 		}
 		i += step_size;
 	}

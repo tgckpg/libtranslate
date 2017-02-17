@@ -3,13 +3,11 @@
 
 #### How to build
 1. Run these commands.
-```Bash
+```bash
 cd codegen/native
 git submodule init
 git submodule update
 cd ../../
-php codegen/s2trad.php
-php codegen/synpatch/mkcstable.php
-php codegen/vtrans/mkcstable.php
+bash gencode
 ```
-3. Build it
+2. Build it

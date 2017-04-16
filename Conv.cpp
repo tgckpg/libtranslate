@@ -94,18 +94,18 @@ std::string ConvWithInst(
 		else if ( is_ascii( byte_arr, i ) )
 		{
 			match_ascii( byte_arr, i, out_phrase, step_size );
-			if ( 0 < step_size )
+			if ( 1 < step_size )
 			{
 				conv_stream << out_phrase;
 			}
 			else
 			{
+				// i++ is handled in next loop
+				// Set the step_size to 0
+				step_size = 0;
 				// if word does not match, pad this word
 				conv_stream << byte_arr[ i ];
 			}
-
-			// Step size is always zero
-			step_size = 0;
 		}
 		else
 		{

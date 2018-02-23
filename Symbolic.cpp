@@ -48,3 +48,16 @@ String^ Symbolic::PatchSyntax(String^ Text)
 
 	return ref new Platform::String(w_char);
 }
+
+Platform::Array<byte>^ Symbolic::PatchSyntax(const Platform::Array<byte>^ Utf8Bytes)
+{
+	std::string s = ConvWithInst(
+		Utf8Bytes->Data, Utf8Bytes->Length
+		, match_syn_byte6, match_syn_byte5
+		, match_syn_byte4, match_syn_byte3
+		, match_syn_byte2, match_syn_ascii
+	);
+
+	Platform::Array<byte>^ OutputBytes = ref new Platform::Array<byte>((unsigned char*)s.c_str(), s.length());
+	return OutputBytes;
+}

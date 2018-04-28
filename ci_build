@@ -21,11 +21,6 @@ fi
 cd ../../
 
 STATUS=0
-export PATH=/opt/php/:$PATH
-
-echo "{CI_SECTION_START} mkcstables.php"
-. gencode
-echo "{CI_SECTION_END}"
 
 echo "{CI_SECTION_START} MSBuild"
 "$BUILDER" libtranslate.vcxproj /p:Configuration="Release"

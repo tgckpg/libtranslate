@@ -5,40 +5,15 @@
       <UniqueIdentifier>be4d2165-9de1-4f8e-b47d-4876c25b3946</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tga;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Converters">
-      <UniqueIdentifier>{85aec1ad-fc52-4335-877c-6d50a8359f9b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="Symbolic.cpp" />
-    <ClCompile Include="IsUTF8.cpp" />
-    <ClCompile Include="Chinese.cpp" />
-    <ClCompile Include="CConv.cpp">
-      <Filter>Converters</Filter>
-    </ClCompile>
-    <ClCompile Include="SymConv.cpp">
-      <Filter>Converters</Filter>
-    </ClCompile>
-    <ClCompile Include="Conv.cpp" />
-    <ClCompile Include="SynPatchConv.cpp">
-      <Filter>Converters</Filter>
-    </ClCompile>
+    <ClCompile Include="native\shared\ahocrsk.cpp" />
+    <ClCompile Include="Translator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Symbolic.h" />
-    <ClInclude Include="IsUTF8.h" />
-    <ClInclude Include="Chinese.h" />
-    <ClInclude Include="CConv.h">
-      <Filter>Converters</Filter>
-    </ClInclude>
-    <ClInclude Include="SymConv.h">
-      <Filter>Converters</Filter>
-    </ClInclude>
-    <ClInclude Include="Conv.h" />
-    <ClInclude Include="SynPatchConv.h">
-      <Filter>Converters</Filter>
-    </ClInclude>
+    <ClInclude Include="native\shared\ahocrsk.h" />
+    <ClInclude Include="Translator.h" />
   </ItemGroup>
 </Project>

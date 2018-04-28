@@ -11,38 +11,42 @@ std::stringstream bytes_to_ss(const Platform::Array<byte>^ Table)
 	return words_ss;
 }
 
-Translator::Translator(const Platform::Array<byte>^ WordsTable)
+std::string Translator::_tr_all_phases(std::string text)
 {
-	std::vector<std::string> _wsearch, _wreplace;
-
-	AhoCorasick::ParseTable(bytes_to_ss(WordsTable), _wsearch, _wreplace);
-	words = AhoCorasick(_wsearch);
-	words_replace = _wreplace;
+	std::stringstream ss;
+	unsigned int i = 0;
+	do
+	{
+		ss = phases[i].replace(text, replace_phases[i]);
+		text = ss.str();
+		i++;
+	} while (i < phases.size());
+	return text;
 }
 
-Translator::Translator(const Platform::Array<byte>^ WordsTable, const Platform::Array<byte>^ PhraseTable)
-	:Translator(WordsTable)
+Translator::Translator() { }
+
+void Translator::AddTable(const Platform::Array<byte>^ Table)
 {
 	std::vector<std::string> _wsearch, _wreplace;
 
-	AhoCorasick::ParseTable(bytes_to_ss(PhraseTable), _wsearch, _wreplace);
-	phrase = AhoCorasick(_wsearch);
-	phrase_replace = _wreplace;
+	AhoCorasick::ParseTable(bytes_to_ss(Table), _wsearch, _wreplace);
+	AhoCorasick ac(_wsearch);
+	phases.push_back(ac);
+	replace_phases.push_back(_wreplace);
 }
 
 String^ Translator::Translate(String^ Text)
 {
+	if (Text == nullptr || Text->IsEmpty() || phases.empty())
+		return Text;
+
 	stdext::cvt::wstring_convert<std::codecvt_utf8<wchar_t>> convert;
+
 	std::string stringUtf8 = convert.to_bytes(Text->Data());
+	stringUtf8 = _tr_all_phases(stringUtf8).c_str();
 
-	std::stringstream ss = words.replace(stringUtf8, words_replace);
-
-	if (phrase_replace.size())
-	{
-		ss = phrase.replace(ss.str(), phrase_replace);
-	}
-
-	std::wstring wid_str = convert.from_bytes(ss.str());
+	std::wstring wid_str = convert.from_bytes(stringUtf8);
 	const wchar_t* w_char = wid_str.c_str();
 
 	return ref new Platform::String(w_char);
@@ -50,17 +54,12 @@ String^ Translator::Translate(String^ Text)
 
 Platform::Array<byte>^ Translator::Translate(const Platform::Array<byte>^ Utf8Bytes)
 {
+	if (Utf8Bytes->Length == 0 || phases.empty())
+		return (Platform::Array<byte>^) Utf8Bytes;
+
 	std::string stringUtf8(Utf8Bytes->begin(), Utf8Bytes->end());
+	stringUtf8 = _tr_all_phases(stringUtf8).c_str();
 
-	std::stringstream ss = words.replace(stringUtf8, words_replace);
-
-	if (phrase_replace.size())
-	{
-		ss = phrase.replace(ss.str(), phrase_replace);
-	}
-
-	stringUtf8 = ss.str();
 	Platform::Array<byte>^ OutputBytes = ref new Platform::Array<byte>((unsigned char *)stringUtf8.c_str(), stringUtf8.size());
-
 	return OutputBytes;
 }

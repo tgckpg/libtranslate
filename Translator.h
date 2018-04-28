@@ -8,22 +8,20 @@
 
 namespace libtranslate
 {
-	AhoCorasick words;
-	AhoCorasick phrase;
+	std::vector<AhoCorasick> phases;
+	std::vector<std::vector<std::string>> replace_phases;
 
-	std::vector<std::string> words_replace;
-	std::vector<std::string> phrase_replace;
+	public ref class Translator sealed
+	{
+		std::string _tr_all_phases(std::string text);
 
-    public ref class Translator sealed
-    {
-    public:
-		Translator::Translator(const Platform::Array<byte>^ Words);
-
-		Translator::Translator(const Platform::Array<byte>^ Words, const Platform::Array<byte>^ Phrase);
+	public:
+		Translator::Translator();
+		void Translator::AddTable(const Platform::Array<byte>^ Phase);
 
 		[Windows::Foundation::Metadata::DefaultOverloadAttribute]
-		Platform::String^ Translate( Platform::String^ Text );
+		Platform::String^ Translate(Platform::String^ Text);
 
-		Platform::Array<byte>^ Translate( const Platform::Array<byte>^ Utf8Bytes );
-    };
+		Platform::Array<byte>^ Translate(const Platform::Array<byte>^ Utf8Bytes);
+	};
 }

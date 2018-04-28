@@ -1,13 +1,16 @@
-#### Prerequisities
-- PHP: For generating codes
+## Translator
+### Usage
+```csharp
+Translator TS_1Phase = new Translator( bytes[] Phase1 );
+Translator TS_2Phase = new Translator( byte[] Phase1, byte[] Phase2 )
 
-#### How to build
-1. Run these commands.
-```bash
-cd codegen/native
-git submodule init
-git submodule update
-cd ../../
-bash gencode
+string Result = TS.Translate( "Text" );
+byte[] BytesResult = TS.Translate( new byte[]{ 'a' } );
 ```
-2. Build it
+
+### Table format
+The first `,` will be our delimiter. LHS and RHS should have same length. Otherwise it might cause some unwanted effects.
+```
+1234,5678
+3456,298,
+```

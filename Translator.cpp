@@ -29,11 +29,14 @@ Translator::Translator() { }
 void Translator::AddTable(const Platform::Array<byte>^ Table)
 {
 	std::vector<std::string> _wsearch, _wreplace;
-
 	AhoCorasick::ParseTable(bytes_to_ss(Table), _wsearch, _wreplace);
-	AhoCorasick ac(_wsearch);
-	phases.push_back(ac);
-	replace_phases.push_back(_wreplace);
+
+	if (_wreplace.size())
+	{
+		AhoCorasick ac(_wsearch);
+		phases.push_back(ac);
+		replace_phases.push_back(_wreplace);
+	}
 }
 
 String^ Translator::Translate(String^ Text)

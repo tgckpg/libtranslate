@@ -13,7 +13,7 @@ namespace libtranslate
 		std::vector<AhoCorasick> phases;
 		std::vector<std::vector<std::string>> replace_phases;
 
-		std::string _tr_all_phases(std::string text);
+		void _tr_all_phases(std::string &text);
 
 	public:
 		Translator::Translator();

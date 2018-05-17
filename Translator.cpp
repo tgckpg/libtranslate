@@ -11,17 +11,19 @@ std::stringstream bytes_to_ss(const Platform::Array<byte>^ Table)
 	return words_ss;
 }
 
-std::string Translator::_tr_all_phases(std::string text)
+void Translator::_tr_all_phases(std::string &text)
 {
 	std::stringstream ss;
 	unsigned int i = 0;
 	do
 	{
 		ss = phases[i].replace(text, replace_phases[i]);
-		text = ss.str();
+		size_t pos = ss.tellp();
+		pos++;
+		text.resize(pos);
+		ss.get(&text[0], pos);
 		i++;
 	} while (i < phases.size());
-	return text;
 }
 
 Translator::Translator() { }
@@ -47,12 +49,16 @@ String^ Translator::Translate(String^ Text)
 	stdext::cvt::wstring_convert<std::codecvt_utf8<wchar_t>> convert;
 
 	std::string stringUtf8 = convert.to_bytes(Text->Data());
-	stringUtf8 = _tr_all_phases(stringUtf8).c_str();
+	_tr_all_phases(stringUtf8);
 
-	std::wstring wid_str = convert.from_bytes(stringUtf8);
-	const wchar_t* w_char = wid_str.c_str();
-
-	return ref new Platform::String(w_char);
+	try
+	{
+		std::wstring wid_str = convert.from_bytes(stringUtf8);
+		const wchar_t* w_char = wid_str.c_str();
+		return ref new Platform::String(w_char);
+	}
+	catch (std::exception &e) {}
+	return Text;
 }
 
 Platform::Array<byte>^ Translator::Translate(const Platform::Array<byte>^ Utf8Bytes)
@@ -61,7 +67,7 @@ Platform::Array<byte>^ Translator::Translate(const Platform::Array<byte>^ Utf8By
 		return (Platform::Array<byte>^) Utf8Bytes;
 
 	std::string stringUtf8(Utf8Bytes->begin(), Utf8Bytes->end());
-	stringUtf8 = _tr_all_phases(stringUtf8).c_str();
+	_tr_all_phases(stringUtf8);
 
 	Platform::Array<byte>^ OutputBytes = ref new Platform::Array<byte>((unsigned char *)stringUtf8.c_str(), stringUtf8.size());
 	return OutputBytes;

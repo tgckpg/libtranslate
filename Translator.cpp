@@ -13,15 +13,13 @@ std::stringstream bytes_to_ss(const Platform::Array<byte>^ Table)
 
 void Translator::_tr_all_phases(std::string &text)
 {
-	std::stringstream ss;
 	unsigned int i = 0;
 	do
 	{
-		ss = phases[i].replace(text, replace_phases[i]);
+		std::stringstream ss = phases[i].replace(text, replace_phases[i]);
 		size_t pos = ss.tellp();
-		pos++;
+		text = ss.str();
 		text.resize(pos);
-		ss.get(&text[0], pos);
 		i++;
 	} while (i < phases.size());
 }
